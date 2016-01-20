@@ -14,11 +14,10 @@ Template.postSubmit.events({
     Meteor.call('postInsert', post, function(error, result) {
       // 向用户显示错误信息并终止
       if (error)
-        return throwError(error.reason);
-
+        return   Errors.throw(error.reason);
       // 显示结果，跳转页面
       if (result.postExists)
-        throwError('我已经存在~');
+          Errors.throw(error.reason);
 
       Router.go('postPage', {_id: result._id});
     });
